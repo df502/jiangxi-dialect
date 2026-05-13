@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>九江方言图鉴 - 饮食/称谓</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #f9f7e1;
+            font-family: "Microsoft YaHei", "思源宋体", serif;
+            padding: 30px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        .nav-btn {
+            display: inline-block;
+            color: #c83030;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 6px 12px;
+            border: 1px solid #c83030;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+        .nav-btn:hover {
+            background-color: #c83030;
+            color: white;
+        }
+        .content {
+            flex: 1;
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        .section-title {
+            font-size: 28px;
+            color: #c83030;
+            margin-bottom: 20px;
+            border-left: 4px solid #c83030;
+            padding-left: 15px;
+        }
+        .word-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px,1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .word-card {
+            background: #f9f7e1;
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 3px solid #c83030;
+        }
+        .handwrite {
+            background: #fffacd;
+            padding: 12px;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+body {
+    background-image: radial-gradient(#d4c9a3 1px, transparent 1px);
+    background-size: 24px 24px;
+}
+.cover img {
+    border: 2px solid #e6d5b3;
+    transition: transform 0.3s ease;
+}
+.cover img:hover {
+    transform: scale(1.01);
+}
+.word-card, .saying-card {
+    position: relative;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+.word-card:hover, .saying-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+    background: #fff8eb;
+}
+.word-card .word-title::before {
+    content: "🗣️ ";
+    font-size: 1.1em;
+}
+.nav-btn {
+    background: linear-gradient(to bottom, #fff0e0, #f0e2c6);
+    border: none;
+    font-weight: 500;
+}
+.nav-btn:hover {
+    background: linear-gradient(to bottom, #c83030, #a52a2a);
+}
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="jiujiang4.html" class="nav-btn">← 上一页</a>
+        <span>九江方言图鉴 | 第5页/共7页</span>
+        <a href="jiujiang6.html" class="nav-btn">下一页 →</a>
+    </div>
+
+    <div class="content">
+        <h2 class="section-title">三、饮食、称谓与生活词汇</h2>
+        <div class="word-grid">
+            <div class="word-card"><div class="word-title">油馓 / yóu sǎn</div>一种油炸面食，九江特色早点。</div>
+            <div class="word-card"><div class="word-title">豆粑 / dòu bā</div>绿豆或大米磨浆摊成的饼，可炒可煮。</div>
+            <div class="word-card"><div class="word-title">煨汤 / wēi tāng</div>瓦罐煨汤。九江人也爱喝。</div>
+            <div class="word-card"><div class="word-title">老爹 / lǎo diē</div>爷爷或老年男子。</div>
+            <div class="word-card"><div class="word-title">娭毑 / āi jiě</div>奶奶或老年妇女。湖南江西一带常用。</div>
+            <div class="word-card"><div class="word-title">佬俵 / lǎo biào</div>江西人之间的亲切称呼，九江亦用。</div>
+            <div class="word-card"><div class="word-title">崽 / zǎi</div>儿子。“我崽在南昌读书。”</div>
+            <div class="word-card"><div class="word-title">女 / nǚ</div>女儿。</div>
+            <div class="word-card"><div class="word-title">屋里 / wú lǐ</div>家里。“回屋里去。”</div>
+            <div class="word-card"><div class="word-title">灶下 / zào hā</div>厨房。老派说法。</div>
+        </div>
+        <div class="handwrite">
+            ✍️ 九江方言词汇融合了码头文化、商业文化和农耕文化，许多词语生动描绘了九江人耿直、爽快的性格。
+        </div>
+    </div>
+    <script>
+    (function() {
+        // 为所有词汇卡片添加音频占位图标
+        const cards = document.querySelectorAll('.word-card');
+        cards.forEach(card => {
+            if (card.querySelector('.audio-placeholder')) return;
+            const titleElem = card.querySelector('.word-title');
+            if (titleElem) {
+                const icon = document.createElement('span');
+                icon.className = 'audio-placeholder';
+                icon.innerHTML = ' 🔊';
+                icon.style.cursor = 'pointer';
+                icon.style.marginLeft = '8px';
+                icon.onclick = (e) => { e.stopPropagation(); alert('方言发音正在录制中，后续版本添加。'); };
+                titleElem.appendChild(icon);
+            }
+        });
+    })();
+    </script>
+</body>
+</body>
+</html>

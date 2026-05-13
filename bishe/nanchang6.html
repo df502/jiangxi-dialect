@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>南昌方言图鉴 - 谚语</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #f9f7e1;
+            font-family: "Microsoft YaHei", "思源宋体", serif;
+            padding: 30px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        .nav-btn {
+            display: inline-block;
+            color: #c83030;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 6px 12px;
+            border: 1px solid #c83030;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+        .nav-btn:hover {
+            background-color: #c83030;
+            color: white;
+        }
+        .content {
+            flex: 1;
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        .section-title {
+            font-size: 28px;
+            color: #c83030;
+            margin-bottom: 20px;
+            border-left: 4px solid #c83030;
+            padding-left: 15px;
+        }
+        .saying-card {
+            background: #fef7e0;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 3px solid #c83030;
+        }
+body {
+    background-image: radial-gradient(#d4c9a3 1px, transparent 1px);
+    background-size: 24px 24px;
+}
+.cover img {
+    border: 2px solid #e6d5b3;
+    transition: transform 0.3s ease;
+}
+.cover img:hover {
+    transform: scale(1.01);
+}
+.word-card, .saying-card {
+    position: relative;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+.word-card:hover, .saying-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+    background: #fff8eb;
+}
+.word-card .word-title::before {
+    content: "🗣️ ";
+    font-size: 1.1em;
+}
+.nav-btn {
+    background: linear-gradient(to bottom, #fff0e0, #f0e2c6);
+    border: none;
+    font-weight: 500;
+}
+.nav-btn:hover {
+    background: linear-gradient(to bottom, #c83030, #a52a2a);
+}
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="nanchang5.html" class="nav-btn">← 上一页</a>
+        <span>南昌方言图鉴 | 第6页/共8页</span>
+        <a href="nanchang7.html" class="nav-btn">下一页 →</a>
+    </div>
+
+    <div class="content">
+        <h2 class="section-title">四、戴师傅嘴里蹦出来的老话</h2>
+        <div class="content-box">
+            <p>等红灯的时候，我问他南昌有没有什么老话，他随口说了几条：</p>
+        </div>
+
+        <div class="saying-card"><strong>晴带雨伞，饱带饥粮</strong> — 晴天也要带伞，吃饱也要带干粮。提醒凡事要留后路。</div>
+        <div class="saying-card"><strong>细伢子不教，长大成草</strong> — 小孩不教育，长大不成器。</div>
+        <div class="saying-card"><strong>吃人家的嘴软，拿人家的手短</strong> — 这个很多地方都有，但南昌话说“恰”人家。</div>
+        <div class="saying-card"><strong>远亲不如近邻</strong> — 他跟邻居关系很好，互相照应。</div>
+        <div class="saying-card"><strong>春栽一粒粟，秋收万颗子</strong> — 农谚，要有付出才有回报。</div>
+        <div class="saying-card"><strong>人心齐，泰山移</strong> — 团结力量大。</div>
+        <div class="saying-card"><strong>落雨天打老婆——闲得慌</strong> — 歇后语，讽刺没事找事。他说现在没人打老婆了。</div>
+        <div class="saying-card"><strong>庐山上盖庙——还早得很</strong> — 意思是事情还远着呢。</div>
+        <div class="handwrite" style="background:#fffacd; padding:12px; margin-top:20px;">
+            ✍️ 戴师傅说很多老话他都记不全了，他父亲讲得更多，可惜不在了。
+        </div>
+    </div>
+    <script>
+    (function() {
+        // 为所有词汇卡片添加音频占位图标
+        const cards = document.querySelectorAll('.word-card');
+        cards.forEach(card => {
+            if (card.querySelector('.audio-placeholder')) return;
+            const titleElem = card.querySelector('.word-title');
+            if (titleElem) {
+                const icon = document.createElement('span');
+                icon.className = 'audio-placeholder';
+                icon.innerHTML = ' 🔊';
+                icon.style.cursor = 'pointer';
+                icon.style.marginLeft = '8px';
+                icon.onclick = (e) => { e.stopPropagation(); alert('方言发音正在录制中，后续版本添加。'); };
+                titleElem.appendChild(icon);
+            }
+        });
+    })();
+</script>
+</body>
+</body>
+</html>

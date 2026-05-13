@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>江西方言小测验</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #f9f7e1;
+            background-image: radial-gradient(#d4c9a3 1px, transparent 1px);
+            background-size: 24px 24px;
+            font-family: "Microsoft YaHei", "思源宋体", serif;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 20px 35px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+        h1 {
+            color: #c83030;
+            font-size: 32px;
+            border-left: 5px solid #c83030;
+            padding-left: 20px;
+            margin-bottom: 25px;
+        }
+        .question {
+            background: #fef7e0;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .question-text {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #2c3e2f;
+        }
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+        .opt-btn {
+            background: #f0e2c6;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+        .opt-btn:hover {
+            background: #c83030;
+            color: white;
+            transform: scale(1.02);
+        }
+        .feedback {
+            font-size: 14px;
+            margin-top: 10px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+        .correct {
+            background: #c8e6d9;
+            color: #1e5631;
+        }
+        .wrong {
+            background: #ffe0e0;
+            color: #b33;
+        }
+        .score-area {
+            text-align: center;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 2px dashed #e6d5b3;
+        }
+        #score {
+            font-size: 28px;
+            font-weight: bold;
+            color: #c83030;
+        }
+        button {
+            background: #c83030;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        .back-home {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            background: #aaa;
+        }
+    </style>
+</head>
+<body>
+<div class="quiz-container">
+    <h1>🗣️ 江西方言小测验</h1>
+    <p>测测你对南昌、九江、赣州、萍乡方言的了解程度～</p>
+
+    <div id="questions-area"></div>
+    <div class="score-area">
+        <p>你的得分：<span id="score">0</span> / <span id="total">10</span></p>
+        <button id="resetBtn">重新开始</button>
+        <a href="index.html" class="back-home" style="display:inline-block; margin-left:15px;">🏠 返回首页</a>
+    </div>
+</div>
+
+<script>
+    // 题库
+    const questions = [
+        { text: "南昌话“恰饭”是什么意思？", options: ["睡觉", "吃饭", "喝水", "玩"], correct: 1 },
+        { text: "九江话里“过早”指的是？", options: ["吃午饭", "吃晚饭", "吃早餐", "过年"], correct: 2 },
+        { text: "萍乡话“困告”的意思是？", options: ["告诉", "上课", "睡觉", "跑步"], correct: 2 },
+        { text: "赣州话“啥子”相当于普通话的？", options: ["什么", "哪里", "那个", "你好"], correct: 0 },
+        { text: "南昌话“莫作声”的含义是？", options: ["别说话", "别作声?", "不要唱歌", "小声点"], correct: 0 },
+        { text: "九江话里“结根”形容人？", options: ["厉害", "固执", "漂亮", "聪明"], correct: 1 },
+        { text: "萍乡话“嬲噻”是？", options: ["骂人", "漂亮/好", "生气", "无聊"], correct: 1 },
+        { text: "赣州话“冇得”的意思是？", options: ["得到", "没有", "有得", "好的"], correct: 1 },
+        { text: "南昌话“箸子”是指？", options: ["竹子", "柱子", "筷子", "勺子"], correct: 2 },
+        { text: "九江童谣“月亮光光，照到大江”下一句是什么？", options: ["郎郎骑马，姐接花", "小河流淌", "家乡美", "端午划船"], correct: 0 }
+    ];
+
+    let userAnswers = new Array(questions.length).fill(null);
+    let submitted = new Array(questions.length).fill(false);
+
+    function render() {
+        const container = document.getElementById('questions-area');
+        container.innerHTML = '';
+        questions.forEach((q, idx) => {
+            const qDiv = document.createElement('div');
+            qDiv.className = 'question';
+            qDiv.innerHTML = `
+                <div class="question-text">${idx+1}. ${q.text}</div>
+                <div class="options">
+                    ${q.options.map((opt, optIdx) => `<button class="opt-btn" data-q="${idx}" data-opt="${optIdx}">${opt}</button>`).join('')}
+                </div>
+                <div class="feedback" id="fb-${idx}"></div>
+            `;
+            container.appendChild(qDiv);
+        });
+        // 重新绑定事件
+        document.querySelectorAll('.opt-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const qIdx = parseInt(btn.dataset.q);
+                const optIdx = parseInt(btn.dataset.opt);
+                if (submitted[qIdx]) return; // 已答过不能改
+                const isCorrect = (optIdx === questions[qIdx].correct);
+                userAnswers[qIdx] = optIdx;
+                submitted[qIdx] = true;
+                // 显示反馈
+                const fbDiv = document.getElementById(`fb-${qIdx}`);
+                if (isCorrect) {
+                    fbDiv.innerHTML = '✅ 正确！';
+                    fbDiv.className = 'feedback correct';
+                } else {
+                    const correctAns = questions[qIdx].options[questions[qIdx].correct];
+                    fbDiv.innerHTML = `❌ 错误。正确答案是 “${correctAns}”。`;
+                    fbDiv.className = 'feedback wrong';
+                }
+                // 禁用该题所有选项
+                const parent = btn.parentElement;
+                parent.querySelectorAll('.opt-btn').forEach(b => b.disabled = true);
+                updateScore();
+            });
+        });
+    }
+
+    function updateScore() {
+        let score = 0;
+        for (let i=0; i<questions.length; i++) {
+            if (submitted[i] && userAnswers[i] === questions[i].correct) score++;
+        }
+        document.getElementById('score').innerText = score;
+    }
+
+    function resetQuiz() {
+        userAnswers.fill(null);
+        submitted.fill(false);
+        render();
+        updateScore();
+    }
+
+    document.getElementById('resetBtn').addEventListener('click', resetQuiz);
+    document.getElementById('total').innerText = questions.length;
+    render();
+    updateScore();
+</script>
+</body>
+</html>

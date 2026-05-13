@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>江西方言图鉴 - 首页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f9f7e1;
+            font-family: "Microsoft YaHei", "思源宋体", serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .title {
+            font-size: 42px;
+            color: #222;
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .divider {
+            width: 120px;
+            height: 3px;
+            background-color: #c83030;
+            margin: 0 auto;
+        }
+
+        .city-container {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex: 1;
+        }
+
+        .city-card {
+            width: 220px;
+            height: 300px;
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+            .city-card:hover {
+                transform: scale(1.08);
+                box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            }
+
+            .city-card img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+        .city-name {
+            position: absolute;
+            bottom: 25px;
+            left: 20px;
+            font-size: 32px;
+            color: white;
+            font-weight: bold;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .city-tag {
+            position: absolute;
+            bottom: 25px;
+            right: 20px;
+            background-color: #c83030;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .hint-text {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .nav-btn {
+            background-color: #ddd;
+            color: #666;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+            .nav-btn:hover {
+                background-color: #bbb;
+                color: #c83030;
+            }
+
+        .footer {
+            font-size: 12px;
+            color: #888;
+            margin-top: 20px;
+        }
+
+        body {
+            background-image: radial-gradient(#d4c9a3 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+
+        .cover img {
+            border: 2px solid #e6d5b3;
+            transition: transform 0.3s ease;
+        }
+
+            .cover img:hover {
+                transform: scale(1.01);
+            }
+
+        .word-card, .saying-card {
+            position: relative;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+
+            .word-card:hover, .saying-card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+                background: #fff8eb;
+            }
+
+            .word-card .word-title::before {
+                content: "🗣️ ";
+                font-size: 1.1em;
+            }
+
+        .nav-btn {
+            background: linear-gradient(to bottom, #fff0e0, #f0e2c6);
+            border: none;
+            font-weight: 500;
+        }
+
+            .nav-btn:hover {
+                background: linear-gradient(to bottom, #c83030, #a52a2a);
+            }
+    </style>
+</head>
+<!-- ===== 搜索模块 ===== -->
+<div class="search-section">
+    <div class="search-box-wrapper">
+        <div class="search-icon">🔍</div>
+        <input type="text" id="searchInput" placeholder="搜索方言词，例如：恰饭 困告 吃过" autocomplete="off">
+        <button id="searchBtn">搜索</button>
+    </div>
+    <div id="searchResultArea" class="search-result-area"></div>
+</div>
+
+<style>
+    .search-section {
+        max-width: 800px;
+        margin: 30px auto;
+        padding: 0 20px;
+    }
+
+    .search-box-wrapper {
+        display: flex;
+        background: white;
+        border-radius: 50px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        border: 1px solid #e6d5b3;
+        overflow: hidden;
+        transition: 0.2s;
+    }
+
+        .search-box-wrapper:focus-within {
+            box-shadow: 0 6px 16px rgba(200,48,48,0.12);
+            border-color: #c83030;
+        }
+
+    .search-icon {
+        padding: 12px 0 12px 18px;
+        font-size: 20px;
+        color: #c83030;
+    }
+
+    #searchInput {
+        flex: 1;
+        border: none;
+        padding: 12px 8px;
+        font-size: 16px;
+        outline: none;
+        font-family: inherit;
+    }
+
+    #searchBtn {
+        background: #c83030;
+        color: white;
+        border: none;
+        padding: 0 24px;
+        font-size: 15px;
+        cursor: pointer;
+        transition: 0.2s;
+        font-weight: 500;
+    }
+
+        #searchBtn:hover {
+            background: #a52a2a;
+        }
+
+    .search-result-area {
+        margin-top: 30px;
+        display: none;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .result-card {
+        background: white;
+        border-radius: 16px;
+        width: 280px;
+        padding: 16px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        cursor: pointer;
+        transition: 0.2s;
+        border-left: 4px solid #c83030;
+    }
+
+        .result-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+            background: #fffaf0;
+        }
+
+    .result-word {
+        font-size: 20px;
+        font-weight: bold;
+        color: #c83030;
+    }
+
+    .result-pinyin {
+        font-size: 13px;
+        color: #888;
+        margin-left: 8px;
+        font-weight: normal;
+    }
+
+    .result-city {
+        display: inline-block;
+        background: #f0e2c6;
+        padding: 2px 10px;
+        border-radius: 20px;
+        font-size: 12px;
+        margin: 8px 0 6px;
+        color: #a55d2a;
+    }
+
+    .result-desc {
+        font-size: 14px;
+        color: #555;
+        margin: 6px 0;
+    }
+
+    .result-link {
+        font-size: 13px;
+        color: #c83030;
+        text-decoration: none;
+    }
+
+    .no-result {
+        text-align: center;
+        padding: 30px;
+        background: #fef7e0;
+        border-radius: 24px;
+        color: #999;
+    }
+</style>
+<script>
+    // ========== 方言词汇库（直接内嵌，无需外部文件） ==========
+    const dialectWords = [
+        // 南昌
+        { word: "恰饭", pinyin: "qiá fàn", meaning: "吃饭", city: "南昌", page: "nanchang4.html", section: "日常用语" },
+        { word: "嬲", pinyin: "niǎo", meaning: "玩、闲逛", city: "南昌", page: "nanchang4.html", section: "日常用语" },
+        { word: "莫作声", pinyin: "mò zuō sēng", meaning: "别说话", city: "南昌", page: "nanchang4.html", section: "日常用语" },
+        { word: "里手", pinyin: "lǐ shǒu", meaning: "内行、厉害", city: "南昌", page: "nanchang4.html", section: "日常用语" },
+        { word: "冒得", pinyin: "mào dé", meaning: "没有", city: "南昌", page: "nanchang4.html", section: "日常用语" },
+        { word: "克", pinyin: "kè", meaning: "去", city: "南昌", page: "nanchang4.html", section: "日常用语" },
+        { word: "箸子", pinyin: "chù zi", meaning: "筷子", city: "南昌", page: "nanchang4.html", section: "古语词" },
+        { word: "昼饭", pinyin: "zhòu fàn", meaning: "午饭", city: "南昌", page: "nanchang4.html", section: "古语词" },
+        { word: "困觉", pinyin: "kùn gào", meaning: "睡觉", city: "南昌", page: "nanchang4.html", section: "日常用语" },
+        // 九江
+        { word: "吃过", pinyin: "chī guò", meaning: "吃饭", city: "九江", page: "jiujiang4.html", section: "日常用语" },
+        { word: "么", pinyin: "miē", meaning: "什么", city: "九江", page: "jiujiang4.html", section: "日常用语" },
+        { word: "过早", pinyin: "guò zǎo", meaning: "吃早饭", city: "九江", page: "jiujiang4.html", section: "日常用语" },
+        { word: "困告", pinyin: "kùn gào", meaning: "睡觉", city: "九江", page: "jiujiang4.html", section: "日常用语" },
+        { word: "豆粑", pinyin: "dòu bā", meaning: "豆制饼", city: "九江", page: "jiujiang5.html", section: "饮食" },
+        { word: "煨汤", pinyin: "wēi tāng", meaning: "瓦罐汤", city: "九江", page: "jiujiang5.html", section: "饮食" },
+        { word: "结根", pinyin: "jié gēn", meaning: "固执", city: "九江", page: "jiujiang5.html", section: "形容词" },
+        // 赣州
+        { word: "啥子", pinyin: "sá zi", meaning: "什么", city: "赣州", page: "ganzhou4.html", section: "日常用语" },
+        { word: "冇得", pinyin: "máo dé", meaning: "没有", city: "赣州", page: "ganzhou4.html", section: "日常用语" },
+        { word: "摆龙门阵", pinyin: "bǎi lóng mén zhèn", meaning: "聊天", city: "赣州", page: "ganzhou4.html", section: "日常用语" },
+        { word: "困觉", pinyin: "kùn gào", meaning: "睡觉", city: "赣州", page: "ganzhou4.html", section: "日常用语" },
+        // 萍乡
+        { word: "恰饭", pinyin: "qiá fàn", meaning: "吃饭", city: "萍乡", page: "pingxiang4.html", section: "日常用语" },
+        { word: "何哩", pinyin: "hó li", meaning: "哪里", city: "萍乡", page: "pingxiang4.html", section: "日常用语" },
+        { word: "么子", pinyin: "mó zi", meaning: "什么", city: "萍乡", page: "pingxiang4.html", section: "日常用语" },
+        { word: "困告", pinyin: "kùn gào", meaning: "睡觉", city: "萍乡", page: "pingxiang4.html", section: "日常用语" },
+        { word: "撩撇", pinyin: "liāo piē", meaning: "简单", city: "萍乡", page: "pingxiang5.html", section: "形容词" },
+        { word: "嬲噻", pinyin: "niā sāi", meaning: "漂亮", city: "萍乡", page: "pingxiang5.html", section: "形容词" }
+    ];
+
+    // ========== 搜索逻辑 ==========
+    const searchInput = document.getElementById('searchInput');
+    const searchBtn = document.getElementById('searchBtn');
+    const resultArea = document.getElementById('searchResultArea');
+
+    function performSearch() {
+        const keyword = searchInput.value.trim().toLowerCase();
+        if (!keyword) {
+            resultArea.style.display = 'none';
+            resultArea.innerHTML = '';
+            return;
+        }
+
+        const matched = dialectWords.filter(item =>
+            item.word.toLowerCase().includes(keyword) ||
+            (item.pinyin && item.pinyin.toLowerCase().includes(keyword)) ||
+            (item.meaning && item.meaning.toLowerCase().includes(keyword))
+        );
+
+        if (matched.length === 0) {
+            resultArea.innerHTML = '<div class="no-result">😢 没有找到匹配的方言词，试试其他词吧。</div>';
+            resultArea.style.display = 'flex';
+            return;
+        }
+
+        let html = '';
+        matched.forEach(item => {
+            html += `
+                <div class="result-card" onclick="location.href='${item.page}'">
+                    <div class="result-word">
+                        ${item.word}
+                        <span class="result-pinyin">${item.pinyin || ''}</span>
+                    </div>
+                    <div class="result-city">${item.city}</div>
+                    <div class="result-desc">${item.meaning} · ${item.section}</div>
+                    <div class="result-link">→ 查看详情</div>
+                </div>
+            `;
+        });
+        resultArea.innerHTML = html;
+        resultArea.style.display = 'flex';
+    }
+
+    searchBtn.addEventListener('click', performSearch);
+    searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') performSearch();
+    });
+</script>
+<body>
+    <div class="header">
+        <h1 class="title">江西方言文化图鉴</h1>
+        <p class="subtitle">2025年寒假，我一个人跑了四个城市，用手机记录下的方言声音</p>
+        <div class="divider"></div>
+    </div>
+    <div class="city-container">
+        <div class="city-card" onclick="location.href='nanchang1.html'">
+            <img src="nanchang.jpg" alt="南昌">
+            <div class="city-name">南昌</div>
+            <div class="city-tag">方言图鉴</div>
+        </div>
+        <div class="city-card" onclick="location.href='jiujiang1.html'">
+            <img src="jiujiang.jpg" alt="九江">
+            <div class="city-name">九江</div>
+            <div class="city-tag">方言图鉴</div>
+        </div>
+        <div class="city-card" onclick="location.href='ganzhou1.html'">
+            <img src="ganzhou.jpg" alt="赣州">
+            <div class="city-name">赣州</div>
+            <div class="city-tag">方言图鉴</div>
+        </div>
+        <div class="city-card" onclick="location.href='pingxiang1.html'">
+            <img src="pingxiang.jpg" alt="萍乡">
+            <div class="city-name">萍乡</div>
+            <div class="city-tag">方言图鉴</div>
+        </div>
+    </div>
+
+    <p class="hint-text">点击卡片，进入每个城市的方言记录（大部分是听写，可能有错，请包涵）</p>
+
+    <div class="nav-buttons">
+        <button class="nav-btn" onclick="location.href='nanchang1.html'">南昌</button>
+        <button class="nav-btn" onclick="location.href='jiujiang1.html'">九江</button>
+        <button class="nav-btn" onclick="location.href='ganzhou1.html'">赣州</button>
+        <button class="nav-btn" onclick="location.href='pingxiang1.html'">萍乡</button>
+        <button class="nav-btn" onclick="location.href='quiz.html'">方言小测验</button>
+    </div>
+    <!-- 反馈按钮 -->
+    <div style="text-align: center; margin: 30px auto 10px;">
+        <button id="feedbackBtn" style="background: #c83030; color: white; border: none; padding: 8px 24px; border-radius: 30px; cursor: pointer; font-size: 14px;">💬 意见反馈</button>
+    </div>
+
+    <script>
+        const fbBtn = document.getElementById('feedbackBtn');
+        if (fbBtn) {
+            fbBtn.addEventListener('click', function () {
+                alert('感谢您的反馈！如有建议或意见，请发送邮件至：dengfan@stu.hut.edu.cn\n我们会认真阅读每一条留言。');
+            });
+        }
+    </script>
+    <div class="footer">
+        2025年春 · 田野录音笔记 · 非专业调查，纯兴趣整理
+    </div>
+</body>
+</html>
