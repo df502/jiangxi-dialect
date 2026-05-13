@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>赣州方言图鉴 - 特色词汇（下）</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #f9f7e1;
+            font-family: "Microsoft YaHei", "思源宋体", serif;
+            padding: 30px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        .nav-btn {
+            display: inline-block;
+            color: #c83030;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 6px 12px;
+            border: 1px solid #c83030;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+        .nav-btn:hover {
+            background-color: #c83030;
+            color: white;
+        }
+        .content {
+            flex: 1;
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        .section-title {
+            font-size: 28px;
+            color: #c83030;
+            margin-bottom: 20px;
+            border-left: 4px solid #c83030;
+            padding-left: 15px;
+        }
+        .vocab-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .vocab-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            vertical-align: top;
+        }
+        .vocab-table td:first-child {
+            background-color: #f9f7e1;
+            font-weight: bold;
+            width: 30%;
+            color: #c83030;
+        }
+        .section-mini {
+            margin-top: 30px;
+        }
+        .section-mini h3 {
+            color: #222;
+            border-left: 3px solid #c83030;
+            padding-left: 12px;
+            margin-bottom: 15px;
+        }
+body {
+    background-image: radial-gradient(#d4c9a3 1px, transparent 1px);
+    background-size: 24px 24px;
+}
+.cover img {
+    border: 2px solid #e6d5b3;
+    transition: transform 0.3s ease;
+}
+.cover img:hover {
+    transform: scale(1.01);
+}
+.word-card, .saying-card {
+    position: relative;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+.word-card:hover, .saying-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+    background: #fff8eb;
+}
+.word-card .word-title::before {
+    content: "🗣️ ";
+    font-size: 1.1em;
+}
+.nav-btn {
+    background: linear-gradient(to bottom, #fff0e0, #f0e2c6);
+    border: none;
+    font-weight: 500;
+}
+.nav-btn:hover {
+    background: linear-gradient(to bottom, #c83030, #a52a2a);
+}
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="ganzhou4.html" class="nav-btn">← 上一页</a>
+        <span>赣州方言图鉴 | 第5页/共7页</span>
+        <a href="ganzhou6.html" class="nav-btn">下一页 →</a>
+    </div>
+
+    <div class="content">
+        <h2 class="section-title">三、更多词汇 & 和客家话比比看</h2>
+
+        <div class="section-mini">
+            <h3>关于吃的</h3>
+            <table class="vocab-table">
+                <tr><td>过早（guo zao）</td><td>吃早饭，这个词湖北也说。</td>
+                <tr><td>糍粑（ci ba）</td><td>糯米做的，赣南很多。</td>
+                <tr><td>粉蒸肉（fen zen rou）</td><td>不用说，本地菜。</td>
+                <tr><td>烫皮（tang pi）</td><td>像肠粉一样的东西，蘸酱油吃。</td>
+            </table>
+        </div>
+
+        <div class="section-mini">
+            <h3>赣州话 vs 瑞金客家话（我同学说的）</h3>
+            <table class="vocab-table">
+                <tr><td>什么</td><td>啥子 / 么个（mo ge）</td>
+                <tr><td>漂亮</td><td>标致 / 靓（liang）</td>
+                <tr><td>家里</td><td>屋头 / 屋下（vuk ha）</td>
+                <tr><td>小孩</td><td>娃儿 / 细伢子（se nga zi）</td>
+                <tr><td>说话</td><td>开腔 / 讲话（gong wa）</td>
+            </table>
+            <p class="note">差别真的很大，客家话听起来完全像另一种语言。</p>
+        </div>
+
+        <div class="section-mini">
+            <h3>几个奇怪的形容词</h3>
+            <table class="vocab-table">
+                <tr><td>闹热（nao re）</td><td>热闹，语序颠倒。</td>
+                <tr><td>惯实（guan shi）</td><td>娇惯，我妈说“这伢子被你惯实了”。</td>
+                <tr><td>清不倒（qing bu dao）</td><td>搞不清楚。我问路时阿姨说“我清不倒”，一脸抱歉。</td>
+            </table>
+        </div>
+    </div>
+    <script>
+    (function() {
+        // 获取所有表格
+        var tables = document.querySelectorAll('.vocab-table');
+        for (var i = 0; i < tables.length; i++) {
+            var rows = tables[i].querySelectorAll('tr');
+            for (var j = 0; j < rows.length; j++) {
+                var firstCell = rows[j].cells[0];
+                if (firstCell && firstCell.innerHTML.indexOf('🔊') === -1) {
+                    // 在单元格内容末尾添加喇叭图标
+                    firstCell.innerHTML = firstCell.innerHTML + ' <span style="cursor:pointer; margin-left:6px; font-size:14px;" onclick="alert(\'方言发音正在录制中，后续版本添加。\')"> 🔊</span>';
+                }
+            }
+        }
+    })();
+    </script>
+</body>
+</html>

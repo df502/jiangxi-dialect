@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>南昌方言图鉴 - 起源</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #f9f7e1;
+            font-family: "Microsoft YaHei", "思源宋体", serif;
+            padding: 30px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        .nav-btn {
+            display: inline-block;
+            color: #c83030;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 6px 12px;
+            border: 1px solid #c83030;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+        .nav-btn:hover {
+            background-color: #c83030;
+            color: white;
+        }
+        .content {
+            flex: 1;
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        .section-title {
+            font-size: 28px;
+            color: #c83030;
+            margin-bottom: 20px;
+            border-left: 4px solid #c83030;
+            padding-left: 15px;
+        }
+        .content-box {
+            line-height: 1.8;
+            color: #555;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .img-box {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .img-box img {
+            max-width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        .img-box p {
+            margin-top: 10px;
+            color: #777;
+            font-size: 14px;
+        }
+        .handwrite {
+            background: #fffacd;
+            padding: 12px;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+body {
+    background-image: radial-gradient(#d4c9a3 1px, transparent 1px);
+    background-size: 24px 24px;
+}
+.cover img {
+    border: 2px solid #e6d5b3;
+    transition: transform 0.3s ease;
+}
+.cover img:hover {
+    transform: scale(1.01);
+}
+.word-card, .saying-card {
+    position: relative;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+.word-card:hover, .saying-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+    background: #fff8eb;
+}
+.word-card .word-title::before {
+    content: "🗣️ ";
+    font-size: 1.1em;
+}
+.nav-btn {
+    background: linear-gradient(to bottom, #fff0e0, #f0e2c6);
+    border: none;
+    font-weight: 500;
+}
+.nav-btn:hover {
+    background: linear-gradient(to bottom, #c83030, #a52a2a);
+}
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="nanchang1.html" class="nav-btn">← 上一页</a>
+        <span>南昌方言图鉴 | 第2页/共8页</span>
+        <a href="nanchang3.html" class="nav-btn">下一页 →</a>
+    </div>
+
+    <div class="content">
+        <h2 class="section-title">一、南昌话的“血统”</h2>
+        <div class="content-box">
+            <p>戴师傅说：“我们南昌话不是官话，是赣语，你们萍乡话也是赣语，但调子不一样。”后来我查了资料，南昌话属于赣语昌都片，是赣语的代表方言之一。赣语全国使用人口大概四五千万，主要在江西和湖南东部。</p>
+            <p>南昌话保留了很多古汉语的特征，比如入声、古词。戴师傅随口说了几个：“筷子叫箸子，午饭叫昼饭，晚饭叫夜饭。”他问我萍乡话怎么说，我说萍乡也说箸子、昼饭，但发音不同。他笑：“那我们是远房亲戚。”</p>
+            <p>还有一个有意思的地方：南昌话里骂人有时候用“嬲”，但语气不同意思差别很大，戴师傅让我别乱用。</p>
+        </div>
+
+        <!-- 插入方言分布图片 -->
+        <div class="img-box">
+            <img src="nanchang1.jpg" alt="南昌方言分布示意图">
+            <p>图：南昌方言主要分布区域 示意 — 图片来自网络，仅为示意</p>
+        </div>
+
+        <div class="handwrite">
+            ✍️ 查资料才知道，南昌话的入声保留很完整，比如“百、北、别”都是短促音。可惜我耳朵听不太出来差别。
+        </div>
+    </div>
+</body>
+</html>
